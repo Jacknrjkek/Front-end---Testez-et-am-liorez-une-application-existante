@@ -14,6 +14,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+
   private userService = inject(UserService);
   private formBuilder = inject(FormBuilder);
   private destroyRef = inject(DestroyRef);
@@ -35,33 +36,35 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
+
     if (this.loginForm.invalid) return;
 
     const payload = {
-      login: this.loginForm.get('login')?.value,
-      password: this.loginForm.get('password')?.value
+      login: this.form['login'].value,
+      password: this.form['password'].value
     };
 
-    this.userService
-      .login(payload)
+    this.userService.login(payload)
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({
         next: (res: any) => {
+
           console.log('Réponse backend =', res);
 
           if (res?.token) {
             localStorage.setItem('token', res.token);
-            console.log('Token stocké dans localStorage =', res.token);
+            console.log('Token stocké =', res.token);
           } else {
-            console.error('⚠️ Le backend n’a pas renvoyé de token !');
+            console.error(' Aucun token renvoyé !');
           }
 
-          alert('Login success!');
+          alert('Login réussi !');
           this.router.navigate(['/students']);
         },
+
         error: (err) => {
           console.error('Erreur login :', err);
-          alert('Invalid login or password!');
+          alert('Identifiant ou mot de passe incorrect.');
         }
       });
   }
@@ -69,5 +72,9 @@ export class LoginComponent implements OnInit {
   onReset() {
     this.submitted = false;
     this.loginForm.reset();
+  }
+
+  goHome() {
+    this.router.navigate(['/home']);
   }
 }

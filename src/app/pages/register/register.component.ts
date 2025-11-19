@@ -5,6 +5,7 @@ import { MaterialModule } from '../../shared/material.module';
 import { UserService } from '../../core/service/user.service';
 import { Register } from '../../core/models/Register';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -14,21 +15,22 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
   styleUrl: './register.component.css'
 })
 export class RegisterComponent implements OnInit {
+
   private userService = inject(UserService);
   private formBuilder = inject(FormBuilder);
   private destroyRef = inject(DestroyRef);
+  private router = inject(Router);
+
   registerForm: FormGroup = new FormGroup({});
   submitted: boolean = false;
 
   ngOnInit() {
-    this.registerForm = this.formBuilder.group(
-      {
-        firstName: ['', Validators.required],
-        lastName: ['', Validators.required],
-        login: ['', Validators.required],
-        password: ['', Validators.required]
-      },
-    );
+    this.registerForm = this.formBuilder.group({
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      login: ['', Validators.required],
+      password: ['', Validators.required]
+    });
   }
 
   get form() {
@@ -37,27 +39,32 @@ export class RegisterComponent implements OnInit {
 
   onSubmit(): void {
     this.submitted = true;
+
     if (this.registerForm.invalid) {
       return;
     }
+
     const registerUser: Register = {
-      firstName: this.registerForm.get('firstName')?.value,
-      lastName: this.registerForm.get('lastName')?.value,
-      login: this.registerForm.get('login')?.value,
-      password: this.registerForm.get('password')?.value
+      firstName: this.form['firstName'].value,
+      lastName: this.form['lastName'].value,
+      login: this.form['login'].value,
+      password: this.form['password'].value
     };
+
     this.userService.register(registerUser)
       .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe(
-      () => {
+      .subscribe(() => {
         alert('SUCCESS!! :-)');
-        // TODO : router l'utilisateur vers la page de login
-      },
-    );
+        this.router.navigate(['/login']);
+      });
   }
 
   onReset(): void {
     this.submitted = false;
     this.registerForm.reset();
+  }
+
+  goHome() {
+    this.router.navigate(['/home']);
   }
 }

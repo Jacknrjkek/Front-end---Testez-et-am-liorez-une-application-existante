@@ -1,10 +1,13 @@
 <div class="card m-3">
-  <h5 class="card-header">Registration Form</h5>
+  <h5 class="card-header">Formulaire d'inscription</h5>
+
   <div class="card-body">
     <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
       <div class="form-row">
+        <!-- Prénom -->
         <div class="form-group col-5">
-          <label>First Name</label>
+          <label>Prénom</label>
           <input
             type="text"
             formControlName="firstName"
@@ -14,13 +17,15 @@
           @if (submitted && form['firstName'].errors) {
             <div class="invalid-feedback">
               @if (form['firstName'].errors?.['required']) {
-                <div>First Name is required</div>
+                <div>Le prénom est requis</div>
               }
             </div>
           }
         </div>
+
+        <!-- Nom -->
         <div class="form-group col-5">
-          <label>Last Name</label>
+          <label>Nom</label>
           <input
             type="text"
             formControlName="lastName"
@@ -30,14 +35,16 @@
           @if (submitted && form['lastName'].errors) {
             <div class="invalid-feedback">
               @if (form['lastName'].errors?.['required']) {
-                <div>Last Name is required</div>
+                <div>Le nom est requis</div>
               }
             </div>
           }
         </div>
       </div>
-      <div class="form-group">
-        <label>Login</label>
+
+      <!-- Identifiant -->
+      <div class="form-group mt-3">
+        <label>Identifiant</label>
         <input
           type="text"
           formControlName="login"
@@ -47,16 +54,17 @@
         @if (submitted && form['login'].errors) {
           <div class="invalid-feedback">
             @if (form['login'].errors?.['required']) {
-              <div>Login is required</div>
+              <div>L’identifiant est requis</div>
             }
           </div>
         }
       </div>
 
-      <div class="form-group">
-        <label>Password</label>
+      <!-- Mot de passe -->
+      <div class="form-group mt-3">
+        <label>Mot de passe</label>
         <input
-          type="text"
+          type="password"
           formControlName="password"
           class="form-control"
           [ngClass]="{ 'is-invalid': submitted && form['password'].errors }"
@@ -64,17 +72,19 @@
         @if (submitted && form['password'].errors) {
           <div class="invalid-feedback">
             @if (form['password'].errors?.['required']) {
-              <div>password is required</div>
+              <div>Le mot de passe est requis</div>
             }
           </div>
         }
       </div>
-      <div class="text-center">
-        <button class="btn btn-primary mr-1">Register</button>
-        <button class="btn btn-secondary" type="reset" (click)="onReset()">
-          Cancel
-        </button>
+
+      <!-- Boutons -->
+      <div class="d-flex justify-content-center mt-4 gap-3">
+        <button class="btn btn-primary" type="submit">S'inscrire</button>
+        <button class="btn btn-secondary" type="reset" (click)="onReset()">Effacer</button>
+        <button class="btn btn-dark" type="button" (click)="goHome()">Accueil</button>
       </div>
+
     </form>
   </div>
 </div>
