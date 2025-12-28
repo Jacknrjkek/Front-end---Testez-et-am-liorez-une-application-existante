@@ -1,59 +1,116 @@
-# EtudiantFrontend
+# 🎓 Système de Gestion des Étudiants (Frontend)
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.16.
+![Angular](https://img.shields.io/badge/Angular-19.2.16-DD0031?style=for-the-badge&logo=angular&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
+![Node](https://img.shields.io/badge/Node.js-Latest_LTS-339933?style=for-the-badge&logo=node.js&logoColor=white)
 
-## Development server
+Interface utilisateur moderne pour l'application de gestion des étudiants. Développée avec Angular 19, cette application permet aux agents de la bibliothèque de gérer facilement les inscrits et leurs emprunts.
 
-To start a local development server, run:
+---
+
+## 🚀 Fonctionnalités
+
+- **Tableau de Bord** : Vue d'ensemble des étudiants.
+- **Formulaires Dynamiques** : Ajout et édition d'étudiants avec validation en temps réel.
+- **Design Responsive** : Interface adaptative pour desktop et mobile.
+- **Intégration API** : Communication sécurisée avec le backend via JWT.
+
+---
+
+## 🛠️ Stack Technique
+
+- **Framework** : Angular 19.2.16
+- **Langage** : TypeScript
+- **Styles** : CSS3, Angular Material (si applicable), Google Fonts (Lato, Merriweather)
+- **Tests** : Jest (Unitaires), Cypress/Protractor (E2E)
+
+---
+
+## 📋 Pré-requis
+
+- **Node.js** (Version LTS recommandée, v20+) : [Télécharger](https://nodejs.org/)
+- **npm** (Inclus avec Node.js)
+- **Angular CLI** : Installé globalement ou utilisé via npx.
+
+---
+
+## ⚡ Installation
+
+### 1. Cloner le projet
+```bash
+git clone https://github.com/votre-repo/etudiant-frontend.git
+cd etudiant-frontend
+```
+
+### 2. Installer les dépendances
+```bash
+npm install
+```
+
+---
+
+## 💻 Développement
+
+Pour lancer le serveur de développement local :
 
 ```bash
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Ouvrez votre navigateur sur **http://localhost:4200/**.
+L'application se rechargera automatiquement si vous modifiez un fichier source.
 
-## Code scaffolding
+> [!NOTE]
+> Si le port 4200 est déjà utilisé, Angular CLI vous proposera d'utiliser un autre port (ex: 32783).
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+---
 
-```bash
-ng generate component component-name
-```
+## 📦 Construction (Build)
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
+Pour générer les fichiers de production dans le dossier `dist/` :
 
 ```bash
 ng build
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+Les fichiers générés seront optimisés pour la performance (minification, tree-shaking).
 
-## Running unit tests
+---
 
-To execute unit tests with the [Jest](https://jestjs.io/) test runner, use the following command:
+## 🧪 Tests
+
+### Tests Unitaires
+Exécutés via **Jest** pour vérifier la logique des composants et services.
 
 ```bash
-jest
+npm test
+# ou directement
+npx jest
 ```
 
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
+### Tests End-to-End (E2E)
+Pour simuler des parcours complets utilisateur.
 
 ```bash
 ng e2e
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+---
 
-## Additional Resources
+## 📁 Structure du Projet
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+```
+src/
+├── app/               # Composants et logique Angular
+├── assets/            # Images, polices et fichiers statiques
+├── environments/      # Configuration (dev, prod)
+├── index.html         # Point d'entrée HTML
+├── main.ts            # Point d'entrée scripts
+└── styles.css         # Styles globaux
+```
+
+---
+
+## 👥 Auteur
+Projet réalisé dans le cadre du parcours **Expert DevOps** d'OpenClassrooms.
+**Projet 2** : "Testez et améliorez une application existante".
